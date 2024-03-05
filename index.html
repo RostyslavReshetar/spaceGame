@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.fontspace.com/fast-hand-font-f52404">
+  <title>Test Task Rostyslav Reshetar</title>
+  <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+  <script type="module">
+    import { createPlayer, handlePlayerMovement, handleShootingEvent, bulletCountDisplay, startTimer} from './js/spaceShip.js';
+    import { loadBackground } from './js/setUpGame.js'
+    import { createAsteroids, handleAsteroidMovement } from './js/asteroids.js';
+    
+    let app;
+    let player;
+    let asteroids;
+    let bullets = [];
+
+    window.onload = function() {
+      app = new PIXI.Application({
+        width: 1280,
+        height: 720,
+      });
+
+      loadBackground(app)
+
+      document.body.appendChild(app.view);
+
+      player = createPlayer(app);
+      asteroids = createAsteroids(app, player);
+
+      handlePlayerMovement(player, app);
+
+      app.ticker.add(() => {
+        handleAsteroidMovement(app, asteroids);
+      });
+
+      handleShootingEvent(app, player, asteroids)
+      bulletCountDisplay.position.set(10, 10); 
+      app.stage.addChild(bulletCountDisplay); 
+
+      startTimer(app, asteroids)
+      
+    };
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

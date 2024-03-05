@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@pixi/sound": "^5.2.3",
+    "@types/pixi.js": "^5.0.0",
+    "gsap": "^3.12.5",
+    "pixi.js": "^7.4.0"
+  },
+  "devDependencies": {
+    "@assetpack/cli": "^0.8.0",
+    "@assetpack/core": "^0.8.0"
+  }
+}
